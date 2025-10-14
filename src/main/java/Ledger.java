@@ -31,8 +31,18 @@ public class Ledger {
         System.out.println("Payment added ");
     }
 
+    public void displayLedger() {
+        Collections.sort(transactions, Comparator.comparing(Traansaction::getDate).reversed());
+
+        for (Transaction transaction ; transactions) {
+            System.out.println(transaction);
+        }
+    }
 }
 
 public void addDeposit(Scanner scanner) {
 
+}
+
+void main() {
 }
