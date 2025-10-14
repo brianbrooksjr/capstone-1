@@ -26,7 +26,7 @@ public class Ledger {
         String description = scanner.next();
 
         transactions.add(new Transaction(-amount, description, "Payment"));
-        System.out.println("Payment added");
+        System.out.println("Payment added ");
     }
 
 }
