@@ -15,9 +15,18 @@ public class Ledger {
         String descriptions = scanner.next();
 
         //Format the Deposit information
-        transactions.add(new Transaction(amount, description, "Depsit"));
+        transactions.add(new Transaction(amount, description, "Deposit"));
         System.out.println("Deposit added.");
 
+    }
+    public void makePayment(Scanner scanner){
+        System.out.print("Enter Payment amount: ");
+        double amount = scanner.nextDouble();
+        System.out.print("Enter payment description: ");
+        String description = scanner.next();
+
+        transactions.add(new Transaction(-amount, description, "Payment"));
+        System.out.println("Payment added");
     }
 
 }
