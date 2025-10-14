@@ -15,6 +15,17 @@ public class Main {
             choice = scanner.nextLine().toUpperCase();
 
             switch (choice) {
+                case "D":
+                    ledger.addDeposit(scanner);
+                    break;
+                case "P":
+                    ledger.makePayment(scanner);
+                    break;
+                case "L":
+                    ledger.displayLedger();
+                    break;
+            }
+        } while (!choice.equals("X"));
 
         System.out.println("Exiting application.");
         scanner.close();
