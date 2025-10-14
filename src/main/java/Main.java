@@ -7,6 +7,7 @@ public class Main {
         String choice;
 
         do {
+            //Main menu Display
             System.out.println("Home Screen:");
             System.out.println("D) Add Deposit");
             System.out.println("P) Make Payment");
@@ -14,6 +15,8 @@ public class Main {
             System.out.println("X) Exit");
             choice = scanner.nextLine().toUpperCase();
 
+            // User UI of the Accounting App
+            //
             switch (choice) {
                 case "D":
                     ledger.addDeposit(scanner);
