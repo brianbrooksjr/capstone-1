@@ -39,10 +39,3 @@ public class Ledger {
         }
     }
 }
-
-public void addDeposit(Scanner scanner) {
-
-}
-
-void main() {
-}
