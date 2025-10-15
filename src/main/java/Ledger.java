@@ -27,14 +27,14 @@ public class Ledger {
         String description = scanner.next();
 
         //Payment Information Format
-        transactions.add(new Transaction(-amount, description, "Payment"));
+        transactions.add(new Transaction(-amount,description, "Payment"));
         System.out.println("Payment added ");
     }
 
     public void displayLedger() {
-        Collections.sort(transactions, Comparator.comparing(Traansaction::getDate).reversed());
+        transactions.sort(Comparator.comparing(Transaction::getDate).reversed());
 
-        for (Transaction transaction ; transactions) {
+        for (Transaction transaction : transactions) {
             System.out.println(transaction);
         }
     }
