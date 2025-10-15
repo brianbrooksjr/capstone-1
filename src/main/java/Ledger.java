@@ -38,4 +38,9 @@ public class Ledger {
             System.out.println(transaction);
         }
     }
+
+    public void displayDeposits(){
+        transactions.stream()
+        .filter(t -> t.getAmount() < 0)
 }
+// save the transactions to a collection and read the collection
