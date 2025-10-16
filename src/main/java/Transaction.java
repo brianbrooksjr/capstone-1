@@ -8,39 +8,44 @@ public class Transaction {
     private double amount;
     private String description;
     private String vendor;
-    private Date date;
+    private LocalDateTime dateTime;
 
-    public Transaction(double amount, String description, String vendor, LocalDateTime dateTime) {
-        this.amount = amount;
+    public Transaction(LocalDateTime dateTime, String description, String vendor, double amount) {
+        this.dateTime = new dateTime();
         this.description = description;
         this.vendor = vendor;
-        this.dateTime = new dateTime();
+        this.amount = amount;
     }
 
-    public Date getDate() {
-        return date;
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+    public String getVendor(){
+        return vendor;
     }
 
-    public String getDescriptioon(){
-        return description;
+    public double getAmount() {
+        return amount;
     }
+// TODO write in transaction single line format [date|time|description|vendor|amount]
+
 public void addDeposit (Scanner scanner) {
         System.out.print ("Enter deposit amount: ");
         double amount = scanner.nextDouble();
         System.out.print("Enter deposit description: ");
         String description = scanner.next();
-
-        //Deposit information Format
-        transactions.add(new Transaction(amount, description, "Deposit"));
-        System.out.println("Deposit added.");
-    }
-
-
-
-
-    public String toString() {
-        SimpleDateForemat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        return formatter.format(date) + " - " + description + ": " + amount;
+//
+//        //Deposit information Format
+//        transactions.add(new Transaction(dateTime, description, "Deposit"));
+//        System.out.println("Deposit added.");
+//    }
+//
+//
+//
+//
+//    public String toString() {
+//        SimpleDateForemat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+//        return formatter.format(date) + " - " + description + ": " + amount;
 
     }
 }
