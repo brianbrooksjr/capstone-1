@@ -18,8 +18,7 @@ public class Transaction {
 
     public String toCSV() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd|HH:mm:ss"); // Format 2023-04-15|10:13:25
-        return dateTime.format(formatter) + "|" + description + "|" + vendor + amount;
-
+        return dateTime.format(formatter) + "|" + description + "|" + vendor + amount;//2023-04-15|11:15:00|Invoice 1001 paid|Joe|1500.00
     }
 
     public LocalDateTime getDateTime() {
