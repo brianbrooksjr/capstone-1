@@ -1,5 +1,6 @@
 import java.util.Date;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 
@@ -9,10 +10,11 @@ public class Transaction {
     private String vendor;
     private Date date;
 
-    public Transaction(Double amount, String description, String type) {
+    public Transaction(double amount, String description, String vendor, LocalDateTime dateTime) {
         this.amount = amount;
         this.description = description;
-        this.date = new Date();
+        this.vendor = vendor;
+        this.dateTime = new dateTime();
     }
 
     public Date getDate() {
