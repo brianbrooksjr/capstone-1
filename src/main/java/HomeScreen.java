@@ -4,9 +4,17 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-public class HomeScreen {
+static ArrayList<Transaction> transactions= new ArrayList<>();
+
+public class Main {
+    static ArrayList<Transaction> transactions= new ArrayList<>();
+    static String filename = "src/main/resources/transaction.csv";
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to Accounting App");
+
+
         String choice;
 
         do {
@@ -40,28 +48,4 @@ public class HomeScreen {
 
 
 
-    public void makePayment(Scanner scanner){
-        // Payment UI
-        System.out.print("Enter Payment amount: ");
-        double amount = scanner.nextDouble();
-        System.out.print("Enter payment description: ");
-        String description = scanner.next();
-
-        //Payment Information Format
-        transactions.add(new Transaction(-amount,description, "Payment"));
-        System.out.println("Payment added ");
-    }
-
-    public void displayLedger() {
-        transactions.sort(Comparator.comparing(Transaction::getDate).reversed());
-
-        for (Transaction transaction : transactions) {
-            System.out.println(transaction);
-        }
-    }
-
-    public void displayDeposits(){
-        transactions.stream()
-                .filter(t -> t.getAmount() < 0)
-    }
 // save the transactions to a collection and read the collection
