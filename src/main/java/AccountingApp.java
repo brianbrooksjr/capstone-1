@@ -106,3 +106,64 @@ public class AccountingApp {
     }
     // TODO: [2025-10-16] Implement sorting options for transactions to enhance user experience.
     // Display the ledger of transactions
+    private static void displayLedger() {
+        boolean isViewing = true; // Flag for viewing transactions
+        // TODO: [2025-10-14] Ledger Screen
+        while (isViewing) {
+            System.out.println("\nLedger Screen:");
+            System.out.println("Select an option to filter:");
+            System.out.println("A) All Transactions");
+            System.out.println("D) Deposits Only");
+            System.out.println("P) Payments Only");
+            System.out.println("R) Reports");
+            System.out.println("0) Back to Home");
+
+            String choice = scanner.nextLine().trim().toUpperCase(); // Get user's filtering choice
+            switch (choice) {
+                case "A":
+                    displayAllTransactions(); // Display all transactions
+                    break;
+                case "D":
+                    displayDeposits(); // Display only deposits
+                    break;
+                case "P":
+                    displayPayments(); // Display only payments
+                    break;
+                case "R":
+                    displayReports(); // Navigate to reports menu
+                    break;
+                case "0":
+                    isViewing = false; // Exit viewing mode and go back to home
+                    break;
+                default:
+                    System.out.println("Invalid option, please try again."); // Handle invalid input
+            }
+        }
+    }
+    // TODO: [2025-10-15] Enhance transaction display by formatting output and including summary statistics.
+    // Display all transactions
+    private static void displayAllTransactions() {
+        // Sort transactions by date in descending order
+        transactions.sort((t1, t2) -> t2.getDateTime().compareTo(t1.getDateTime()));
+
+        // Display each transaction
+        for (Transaction transaction : transactions) {
+            System.out.println(transaction); // Print transaction details
+        }
+    }
+    // TODO: [2025-10-15] Add filtering options for date range and other criteria to improve deposit display.
+    // Display only deposits
+    private static void displayDeposits() {
+        // Filter for deposits and display them
+        transactions.stream()
+                .filter(t -> t.getAmount() > 0) // Select only deposits
+                .forEach(System.out::println); // Print each deposit
+    }
+    // TODO: [2025-10-16] P) Payments - Filter and display only payments (negative entries)
+    // Display only payments
+    private static void displayPayments() {
+        // Filter for payments and display them
+        transactions.stream()
+                .filter(t -> t.getAmount() < 0) // Select only payments
+                .forEach(System.out::println); // Print each payment
+    }
