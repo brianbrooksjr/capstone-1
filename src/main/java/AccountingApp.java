@@ -167,3 +167,94 @@ public class AccountingApp {
                 .filter(t -> t.getAmount() < 0) // Select only payments
                 .forEach(System.out::println); // Print each payment
     }
+
+    // TODO: [2025-10-14] R) Reports - Create a new screen for reports
+    // Display the reports menu
+    private static void displayReports() {
+        boolean isReporting = true; // Flag for viewing reports
+
+        while (isReporting) {
+            System.out.println("\nReports Menu:");
+            System.out.println("1) Month To Date");
+            System.out.println("2) Previous Month");
+            System.out.println("3) Year To Date");
+            System.out.println("4) Previous Year");
+            System.out.println("5) Search by Vendor");
+            System.out.println("0) Back to Ledger");
+
+            String choice = scanner.nextLine().trim(); // Get user's choice for reports
+
+            switch (choice) {
+
+                case "1":
+                    reportMonthToDate(); // Display transactions for the current month
+                    break;
+                case "2":
+                    reportPreviousMonth(); // Display transactions for the previous month
+                    break;
+                case "3":
+                    reportYearToDate(); // Display transactions for the current year
+                    break;
+                case "4":
+                    reportPreviousYear(); // Display transactions for the previous year
+                    break;
+                case "5":
+                    searchByVendor(); // Search transactions by vendor name
+                    break;
+                case "0":
+                    isReporting = false; // Exit reports menu and go back to ledger
+                    break;
+                default:
+                    System.out.println("Invalid option, please try again."); // Handle invalid input
+            }
+        }
+    }
+    // TODO: [2025-10-15] 1) Month To Date - Generate report for the current month
+    // Display transactions for the current month
+    private static void reportMonthToDate() {
+        LocalDateTime now = LocalDateTime.now();
+        transactions.stream()
+                .filter(t -> t.getDateTime().getMonth() == now.getMonth() &&
+                        t.getDateTime().getYear() == now.getYear()) // Filter transactions by current month and year
+                .forEach(System.out::println); // Print each transaction
+    }
+    // TODO: [2025-10-16] 2) Previous Month - Generate report for the last month
+    // Display transactions for the previous month
+    private static void reportPreviousMonth() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime firstDayOfLastMonth = now.minusMonths(1).withDayOfMonth(1); // Get first day of last month
+        LocalDateTime lastDayOfLastMonth = now.minusMonths(1)
+                .withDayOfMonth(firstDayOfLastMonth.toLocalDate().lengthOfMonth()); // Get last day of last month
+
+        transactions.stream()
+                .filter(t -> !t.getDateTime().isBefore(firstDayOfLastMonth) &&
+                        !t.getDateTime().isAfter(lastDayOfLastMonth)) // Filter transactions within last month
+                .forEach(System.out::println); // Print each transaction in the previous month
+    }
+    // TODO: [2025-10-16] 3) Year To Date - Generate report for the current year
+    // Display transactions for the current year
+    private static void reportYearToDate() {
+        int year = LocalDateTime.now().getYear();
+        transactions.stream()
+                .filter(t -> t.getDateTime().getYear() == year) // Filter transactions for the current year
+                .forEach(System.out::println); // Print each transaction
+    }
+    // TODO: [2025-10-16] 4) Previous Year - Generate report for the previous year
+    // Display transactions for the previous year
+    private static void reportPreviousYear() {
+        int lastYear = LocalDateTime.now().getYear() - 1;
+        transactions.stream()
+                .filter(t -> t.getDateTime().getYear() == lastYear) // Filter transactions for the previous year
+                .forEach(System.out::println); // Print each transaction
+    }
+    // TODO: [2025-10-16] 5) Search by Vendor - Prompt for vendor name and display entries
+    // Search for transactions by vendor name
+    private static void searchByVendor() {
+        System.out.print("Enter Vendor Name: ");
+        String vendorName = scanner.nextLine().trim(); // Get vendor name from user
+
+        transactions.stream()
+                .filter(t -> t.getVendor().equalsIgnoreCase(vendorName)) // Filter transactions by vendor
+                .forEach(System.out::println); // Print each matching transaction
+    }
+}
