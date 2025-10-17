@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 
 public class Transaction {
-    private double amount;
+    private final double amount;
     private String description;
-    private String vendor;
-    private LocalDateTime dateTime;
+    private final String vendor;
+    private final LocalDateTime dateTime;
 
     public Transaction(LocalDateTime dateTime, String description, String vendor, double amount) {
         this.dateTime = new dateTime();
@@ -23,6 +23,10 @@ public class Transaction {
 
     public LocalDateTime getDateTime() {
         return dateTime;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String getVendor() {
